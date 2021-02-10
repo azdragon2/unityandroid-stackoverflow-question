@@ -1,0 +1,48 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.X.X'
+
+    repositories {
+        google()
+        maven {   url "https://maven.google.com"   }
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.2'
+	//other dependencies hidden
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "http://nexus.disney.com/nexus/content/repositories/BDE-Releases" }
+        maven { url "https://jitpack.io" }
+        flatDir {
+            dirs "${project(':unityLibrary').projectDir}/libs"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+
+// Define versions in a single place
+ext {
+    // Sdk and tools
+    minSdkVersion = 24
+    targetSdkVersion = 29
+    compileSdkVersion = 29
+
+    // App dependencies
+    androidXVersion = '1.0.0'
+    androidXTestVersion = '1.1.1'
+    androidXAnnotations = '1.0.1'
+    androidXLegacySupport = '1.0.0'
+
+    //Other app versions hidden
+}
